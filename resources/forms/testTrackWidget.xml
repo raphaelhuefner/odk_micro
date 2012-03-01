@@ -2,5 +2,45 @@
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
   <h:head>
     <h:title>Test Track Widget</h:title>
+    <model>
+      <instance>
+        <widgets id="widgets">
+          <start/>
+          <end/>
+          <today/>
+          <deviceid/>
+          <subscriberid/>
+          <simid/>
+          <phonenumber/>
+          <barcode/>
+          <audio/>
+          <track/>
+        </widgets>
+      </instance>
+      <bind nodeset="/widgets/start" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/widgets/end" type="dateTime" jr:preload="timestamp" jr:preloadParams="end"/>
+      <bind nodeset="/widgets/today" type="date" jr:preload="date" jr:preloadParams="today"/>
+      <bind nodeset="/widgets/deviceid" type="string" jr:preload="property" jr:preloadParams="deviceid"/>
+      <bind nodeset="/widgets/subscriberid" type="string" jr:preload="property" jr:preloadParams="subscriberid"/>
+      <bind nodeset="/widgets/simid" type="string" jr:preload="property" jr:preloadParams="simserial"/>
+      <bind nodeset="/widgets/phonenumber" type="string" jr:preload="property" jr:preloadParams="phonenumber"/>
+      <bind nodeset="/widgets/barcode" type="barcode"/>
+      <bind nodeset="/widgets/audio" type="binary"/>
+      <bind nodeset="/widgets/track" type="binary"/>
+    </model>
   </h:head>
+  <h:body>
+    <input ref="barcode">
+      <label>barcode widget</label>
+      <hint>scans multi-format 1d/2d barcodes</hint>
+    </input>
+    <upload ref="audio" mediatype="audio/*">
+      <hint>this will launch the audio recorder</hint>
+      <label>audio widget</label>
+    </upload>
+    <upload ref="track" mediatype="application/x-gps-track">
+      <hint>this will launch the track gatherer</hint>
+      <label>track widget</label>
+    </upload>
+  </h:body>
 </h:html>
